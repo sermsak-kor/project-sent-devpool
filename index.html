@@ -5,46 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PEA DevPool Portfolio | SERMSAK KORSRISUWAN</title>
 </head>
+
+<style>
+    @font-face {
+        font-family: 'prompt' ;
+        src: url('./Prompt/Prompt-Regular.ttf');
+    }
+
+    body{
+        background-color: white;
+        font-family: 'prompt';
+        padding:40px;
+    }
+
+    #my-name {
+        color: #7A288A;
+        font-size:24px;
+        font-weight:500;
+        margin-bottom: 5px;
+    }
+
+    #position{
+        color:#666666;
+        font-size:16px;
+        font-weight:300;
+    }
+
+    .header{
+        display:flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 25px;
+    }
+
+    .head2{
+        color:black;
+        font-size:24px;
+        font-weight:500;
+    }
+
+    .yellow{
+        color:#F6B221;
+        font-size:16px;
+        font-weight:500;
+    }
+
+    .purple{
+        color: #7A288A;
+        font-size:16px;
+        font-weight:500;
+    }
+
+</style>
+
 <body>
-        <header>
-            <div>
-                <h1>นายเสริมศักดิ์ กศรีสุวรรณ</h1>
-                <p>วิศวกร ระดับ 6 แผนกบริการและงานธุรกิจ กองบริการลูกค้า ฝ่ายวิศวกรรมและบริการ การไฟฟ้าส่วนภูมิภาค เขต 1 (ภาคใต้) จังหวัดเพชรบุรี</p>
-                <h2>ปุ่มกดสลับ dark mode มุมขวา</h2>
-            </div>
-        </header>
-        
         <section>
-            <div>
-                <h2>ปุ่มกดดูรูปโปรไฟล์</h2>
+            <div class="header">
+                <div id="my-name"> นายเสริมศักดิ์ กศรีสุวรรณ
+                    <div id="position">วิศวกร ระดับ 6 แผนกบริการและงานธุรกิจ กองบริการลูกค้า </div>
+                    <div id="position">ฝ่ายวิศวกรรมและบริการ การไฟฟ้าส่วนภูมิภาค เขต 1 (ภาคใต้) จังหวัดเพชรบุรี</div>
+                </div>
+                <button>dark mode</button>
             </div>
         </section>
         
         <section>
             <div>
-                <h2>ประวัติการศึกษา</h2>
-                <p>ปริญญาตรี วิศวกรรมไฟฟ้า</p>
+                <button>ดูรูปโปรไฟล์</button>
+            </div>
+        </section>
+        
+        <section>
+            <div>
+                <div class="head2">ประวัติการศึกษา</div>
+                <div class="purple">ปริญญาโท</div>
+                <div class="yellow">มหาวิทยาลัยธรรมศาสตร์</div>
+                <div>คณะวิศวกรรมศาสตร์ สาขาวิศวกรรมไฟฟ้าอุตสาหการ </div>
+            </div>
+            <button>ดูข้อมูลเพิ่มเติม</button>   
+            <div>
+                <div class="purple">ปริญญาตรี</div>
+                <div class="yellow">มหาวิทยาลัยธรรมศาสตร์</div>
+                <div>คณะวิศวกรรมศาสตร์ สาขาวิศวกรรมไฟฟ้าอุตสาหการ </div>
+            </div>
+        </section>
+
+        <section>
+            <div>
+                <div class="head2">ประวัติการทำงาน</div>
+                <div class="purple">ปัจจุบัน</div>
+                <div class="yellow">การไฟฟ้าส่วนภูมิภาค เขต 1 (ภาคใต้) จังหวัดเพชรบุรี</div>
+                <div>วิศวกร ระดับ 6 แผนกบริการและงานธุรกิจ กองบริการลูกค้า ฝ่ายวิศวกรรมและบริการ</div>
+            </div>
+            <button>ดูข้อมูลเพิ่มเติม</button>       
+            <div>
+                <div class="purple">2564-2569</div>
+                <div class="yellow">การไฟฟ้าส่วนภูมิภาค เขต 1 (ภาคใต้) จังหวัดเพชรบุรี</div>
+                <div>วิศวกร ระดับ 5 แผนกลูกค้าสัมพันธ์ กองบริการลูกค้า ฝ่ายวิศวกรรมและบริการ</div>
+                <div>วิศวกร ระดับ 4 แผนกลูกค้าสัมพันธ์ กองบริการลูกค้า ฝ่ายวิศวกรรมและบริการ</div>
             </div>
         </section>
 
         
         <section>
             <div>
-                <h2 >เหตุผลที่อยากเข้า Devpool</h2>
-                <p>อยากพัฒนาตัวเองให้เก่งขึ้น</p>
-                <h2>ปุ่มกดดูข้อความเพิ่มเติม</h2>
+                <div class="head2">เหตุผลที่อยากเข้า Devpool</div>
+                <div>อยากพัฒนาตัวเองให้เก่งขึ้น</div>
+                <button>ดูข้อมูลเพิ่มเติม</button>   
             </div>
         </section>
 
         <section>
             <div>
-                <h2>ดึง api สภาพอากาศ ค่าฝุ่น pm2.5</h2>
+                <div>ดึง api สภาพอากาศ ค่าฝุ่น pm2.5</div>
             </div>
         </section>  
         
         <section>
             <div>
-                <h2>นับจำนวนคนดู</h2>
+                <div>นับจำนวนคนดู</div>
             </div>
         </section>        
 </body>
