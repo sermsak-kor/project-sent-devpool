@@ -13,10 +13,23 @@
     }
 
     body{
-        background-color: white;
+        background-color: #F4F6F8;
         font-family: 'prompt';
-        padding:40px;
+        margin: 0;
+        padding: 40px 20px; 
     }
+
+    .resume-container {
+        max-width: 800px; 
+        margin: 0 auto; 
+        background-color: white;
+        border-radius: 12px; 
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); 
+        overflow: hidden; 
+        padding: 40px;
+    }
+
+
 
     #my-name {
         color: #7A288A;
@@ -63,17 +76,32 @@
     }
 
     .study-item {
-    padding: 15px;
-    background: #7A288A10;
-    border-radius: 20px;
-    margin-bottom: 12px;
-    border-left-width: 4px; 
-    border-left-style: solid;
-    border-left-color: #7A288A; 
+        padding: 15px;
+        background: #7A288A10;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        border-left-width: 4px; 
+        border-left-style: solid;
+        border-left-color: #7A288A; 
+    }
+
+    .btn{
+        background-color: #7A288A;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
 
 </style>
 
 <body>
+    <div class="resume-container">
         <section>
             <div class="header">
                 <div id="my-name"> นายเสริมศักดิ์ กศรีสุวรรณ
@@ -95,7 +123,8 @@
             <div class="study-item">
                 <div>อยากพัฒนาตัวเองให้เก่งขึ้น</div>
             </div>
-            <button>ดูข้อมูลเพิ่มเติม</button>   
+            <button class="btn" id="btn_learn" onclick="see_detail('btn_learn','info_learn')">ดูข้อมูลเพิ่มเติม</button>  
+                <div id="info_learn" class="study-item" style="display: none;">อยากพัฒนาตัวเองให้เก่งขึ้น</div> 
         </section>
 
         <section>
@@ -105,8 +134,8 @@
                 <div class="yellow">การไฟฟ้าส่วนภูมิภาค เขต 1 (ภาคใต้) จังหวัดเพชรบุรี</div>
                 <div>วิศวกร ระดับ 6 แผนกบริการและงานธุรกิจ กองบริการลูกค้า ฝ่ายวิศวกรรมและบริการ</div>
             </div>
-            <button>ดูข้อมูลเพิ่มเติม</button>       
-            <div class="study-item">
+            <button class="btn" id="btn_work" onclick="see_detail('btn_work', 'info_work')">ดูข้อมูลเพิ่มเติม</button>       
+            <div class="study-item" id="info_work" style="display: none;">
                 <div class="purple">2564-2569</div>
                 <div class="yellow">การไฟฟ้าส่วนภูมิภาค เขต 1 (ภาคใต้) จังหวัดเพชรบุรี</div>
                 <div>วิศวกร ระดับ 5 แผนกลูกค้าสัมพันธ์ กองบริการลูกค้า ฝ่ายวิศวกรรมและบริการ</div>
@@ -121,8 +150,8 @@
                 <div class="yellow">มหาวิทยาลัยธรรมศาสตร์</div>
                 <div>คณะวิศวกรรมศาสตร์ สาขาวิศวกรรมไฟฟ้าอุตสาหการ </div>
             </div>
-            <button>ดูข้อมูลเพิ่มเติม</button>   
-            <div class="study-item">
+            <button class="btn" id="btn_edu" onclick="see_detail('btn_edu', 'info_edu')">ดูข้อมูลเพิ่มเติม</button>   
+            <div class="study-item" id="info_edu" style="display: none;">
                 <div class="purple">ปริญญาตรี</div>
                 <div class="yellow">มหาวิทยาลัยธรรมศาสตร์</div>
                 <div>คณะวิศวกรรมศาสตร์ สาขาวิศวกรรมไฟฟ้าอุตสาหการ </div>
@@ -139,14 +168,23 @@
             <div>
                 <div>นับจำนวนคนดู</div>
             </div>
-        </section>        
+        </section>    
+    </div>    
 </body>
 
 <script>
-    
-    
-    
-    
+
+    function see_detail(btn_name, info_name) {
+        const the_button = document.getElementById(btn_name);
+        const the_info = document.getElementById(info_name);
+            if (the_info.style.display == 'block') { 
+            the_info.style.display = 'none'; 
+            the_button.textContent = 'ดูข้อมูลเพิ่มเติม'; 
+        } else { 
+            the_info.style.display = 'block'; 
+            the_button.textContent = 'ซ่อนข้อมูล'; 
+        }
+    }
     
     
     
