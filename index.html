@@ -17,6 +17,7 @@
         font-family: 'prompt';
         margin: 0;
         padding: 40px 20px; 
+        transition: background-color 0.3s, color 0.3s;
     }
 
     .resume-container {
@@ -27,9 +28,8 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); 
         overflow: hidden; 
         padding: 40px;
+        transition: background-color 0.3s;
     }
-
-
 
     #my-name {
         color: #7A288A;
@@ -98,6 +98,43 @@
         margin-bottom: 10px;
     }
 
+    .btn_profile{
+        background-color: #F6B221;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    body.dark-mode {
+            background-color: #121212; 
+            color: #ffffff; 
+        }
+
+    body.dark-mode .resume-container {
+            background-color: #1e1e1e; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+    body.dark-mode .head2 {
+            color: #ffffff;
+        }
+
+    body.dark-mode #position {
+            color: #aaaaaa;
+        }
+
+    body.dark-mode #change_mode {
+            background-color: #333;
+            color: #fff;
+            border-color: #555;
+        }
+
 </style>
 
 <body>
@@ -108,13 +145,13 @@
                     <div id="position">วิศวกร ระดับ 6 แผนกบริการและงานธุรกิจ กองบริการลูกค้า </div>
                     <div id="position">ฝ่ายวิศวกรรมและบริการ การไฟฟ้าส่วนภูมิภาค เขต 1 (ภาคใต้) จังหวัดเพชรบุรี</div>
                 </div>
-                <button>🌙 dark mode</button>
+                <button class="btn" id="btn_changemode" onclick="change_mode()">🌙 dark mode</button>
             </div>
         </section>
         
         <section>
             <div>
-                <button>📷 ดูรูปโปรไฟล์</button>
+                <button class="btn_profile">📷 ดูรูปโปรไฟล์</button>
             </div>
         </section>
         
@@ -170,6 +207,9 @@
             </div>
         </section>    
     </div>    
+
+    
+
 </body>
 
 <script>
@@ -178,15 +218,25 @@
         const the_button = document.getElementById(btn_name);
         const the_info = document.getElementById(info_name);
             if (the_info.style.display == 'block') { 
-            the_info.style.display = 'none'; 
-            the_button.textContent = 'ดูข้อมูลเพิ่มเติม'; 
-        } else { 
-            the_info.style.display = 'block'; 
-            the_button.textContent = 'ซ่อนข้อมูล'; 
+                the_info.style.display = 'none'; 
+                the_button.textContent = 'ดูข้อมูลเพิ่มเติม'; 
+        }   else { 
+                the_info.style.display = 'block'; 
+                the_button.textContent = 'ซ่อนข้อมูล'; 
+            }
         }
-    }
+        
+    function change_mode() {
+        const the_changemode = document.getElementById('btn_changemode');
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                the_changemode.textContent = '☀️ light mode';
+            } else {
+                the_changemode.textContent = '🌙 dark mode';
+            }
+}    
     
     
-    
-</script>
+    </script>
+
 </html>
