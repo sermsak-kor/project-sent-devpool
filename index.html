@@ -112,28 +112,48 @@
     }
 
     body.dark-mode {
-            background-color: #121212; 
-            color: #ffffff; 
-        }
+        background-color: #121212; 
+        color: #ffffff; 
 
-    body.dark-mode .resume-container {
+        /* ซ้อน class ต่างๆ ไว้ข้างในได้เลย */
+        .resume-container {
             background-color: #1e1e1e; 
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-    body.dark-mode .head2 {
+        .head2 {
             color: #ffffff;
         }
 
-    body.dark-mode #position {
+        #position {
             color: #aaaaaa;
         }
+    }
 
-    body.dark-mode #change_mode {
-            background-color: #333;
-            color: #fff;
-            border-color: #555;
+    @media (max-width: 768px) {
+        body {
+            padding: 20px 10px;
         }
+
+        .resume-container {
+            padding: 20px; 
+        }
+
+        .header {
+            flex-direction: column; 
+            align-items: flex-start;
+        }
+
+        .btn, .btn_profile {
+            width: 100%; 
+            margin-right: 0;
+            margin-top: 5px;
+        }
+
+        #my-name {
+            font-size: 20px; 
+        }
+    }
 
 </style>
 
@@ -205,11 +225,12 @@
             <div>
                 <div>นับจำนวนคนดู</div>
             </div>
-        </section>    
+        </section>   
+        
+    
     </div>    
 
     
-
 </body>
 
 <script>
