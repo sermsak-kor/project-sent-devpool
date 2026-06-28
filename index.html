@@ -130,6 +130,17 @@
         }
     }
 
+        .input-box {
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-family: 'prompt';
+        font-size: 16px;
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 10px;
+    }
+
     @media (max-width: 768px) {
         body {
             padding: 20px 10px;
@@ -155,6 +166,7 @@
         }
     }
 
+
 </style>
 
 <body>
@@ -175,6 +187,14 @@
             </div>
         </section>
         
+        <section>
+            <div class="head2">ทักทายผู้เข้าชมเว็บ</div>
+            <div class="study-item">
+                <input type="text" id="input_name" class="input-box" placeholder="พิมพ์ชื่อของคุณที่นี่..." oninput="showName()">
+                <div>ยินดีต้อนรับคุณ: <span id="display_name" class="purple"></span></div>
+            </div>
+        </section>
+
          <section>
             <div class="head2">เหตุผลที่อยากเข้า Devpool</div>
             <div class="study-item">
@@ -257,6 +277,10 @@
             }
 }    
     
+    function showName() {
+        const typedName = document.getElementById('input_name').value;
+        document.getElementById('display_name').textContent = typedName;
+    }
     
     </script>
 
