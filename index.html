@@ -98,7 +98,7 @@
         margin-bottom: 10px;
     }
 
-    .btn_profile{
+    .btn_pro{
         background-color: #F6B221;
         color: black;
         border: none;
@@ -109,6 +109,15 @@
         font-weight: 600;
         margin-right: 10px;
         margin-bottom: 10px;
+    }
+
+    .outline_pro {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        object-position: top; 
+        border-radius: 50%;
+        border: 4px solid #F6B221;
     }
 
     body.dark-mode {
@@ -182,8 +191,9 @@
         </section>
         
         <section>
-            <div>
-                <button class="btn_profile">📷 ดูรูปโปรไฟล์</button>
+            <button class="btn_pro" id="btn_profile" onclick="see_detail('btn_profile','info_profile')">ดูรูปโปรไฟล์</button>
+            <div id="info_profile" style="display: none; text-align: center;">
+                <img src="./picture/profile.jpg" class="outline_pro" alt="รูปโปรไฟล์ นายเสริมศักดิ์ กศรีสุวรรณ">
             </div>
         </section>
         
@@ -198,10 +208,13 @@
          <section>
             <div class="head2">เหตุผลที่อยากเข้า Devpool</div>
             <div class="study-item">
-                <div>อยากพัฒนาตัวเองให้เก่งขึ้น</div>
+                <div>อยากจะใช้โอกาสตรงนี้ในการศึกษา เรียนรู้และพัฒนาทักษะในการเขียนโปรแกรมของตัวเอง เพราะผมมองว่าทักษะนี้มีความสำคัญมากในปัจจุบัน 
+                    และผมตัองการนำความรู้ที่ได้จากการเข้าอบรมในครั้งนี้ มาช่วยลดงานซ้ำซ้อนและเพิ่มประสิทธิภาพการทำงานให้ดีชึ้น
+                    และนำมาประยุกต์ใช้ในงานปัจจุบันของตัวเอง
+                </div>
             </div>
             <button class="btn" id="btn_learn" onclick="see_detail('btn_learn','info_learn')">ดูข้อมูลเพิ่มเติม</button>  
-                <div id="info_learn" class="study-item" style="display: none;">อยากพัฒนาตัวเองให้เก่งขึ้น</div> 
+                <div id="info_learn" class="study-item" style="display: none;">เป้าหมาย : พัฒนา Web Application ที่ใช้งานได้จริงสำหรับองค์กร</div> 
         </section>
 
         <section>
@@ -236,17 +249,25 @@
         </section>
 
         <section>
-            <div>
-                <div>ดึง api สภาพอากาศ ค่าฝุ่น pm2.5</div>
+            <div class="head2">สภาพอากาศ & ค่าฝุ่น PM2.5 (จ.เพชรบุรี)</div>
+            <div class="study-item">
+                
+                <div id="loading_status" style="font-size: 16px;">กำลังโหลดข้อมูล... ⏳</div>
+                
+                <div id="weather_data" style="display: none;">
+                    <span class="purple" style="font-weight: 600;">🌡️ อุณหภูมิปัจจุบัน:</span> 
+                    <span class="yellow" style="font-size: 20px; font-weight: bold;"><span id="show_temp">0</span> °C</span> 
+                    <br><br>
+                    
+                    <span class="purple" style="font-weight: 600;">😷 ค่าฝุ่น PM2.5 ปัจจุบัน:</span> 
+                    <span class="yellow" style="font-size: 20px; font-weight: bold;"><span id="show_pm25">0</span> µg/m³</span> 
+                    <br><br>
+                    
+                    ระดับคุณภาพอากาศ: <span id="show_quality">กำลังประเมิน...</span>
+                </div>
+
             </div>
-        </section>  
-        
-        <section>
-            <div>
-                <div>นับจำนวนคนดู</div>
-            </div>
-        </section>   
-        
+        </section>
     
     </div>    
 
@@ -281,7 +302,59 @@
         const typedName = document.getElementById('input_name').value;
         document.getElementById('display_name').textContent = typedName;
     }
-    
+
+    async function fetchPM25() {
+        const ข้อความโหลด = document.getElementById('loading_status');
+        const กล่องข้อมูล = document.getElementById('weather_data');
+        
+        try {
+            const pmUrl = 'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=13.11&longitude=99.93&current=pm2_5';
+            const weatherUrl = 'https://api.open-meteo.com/v1/forecast?latitude=13.11&longitude=99.93&current=temperature_2m';
+            
+            const pmResponse = await fetch(pmUrl);
+            const weatherResponse = await fetch(weatherUrl);
+            
+            if (!pmResponse.ok || !weatherResponse.ok) { throw new Error('Network Issue'); }
+            
+            const pmData = await pmResponse.json();
+            const weatherData = await weatherResponse.json();
+            
+            const pm25 = pmData.current.pm2_5;
+            const temp = weatherData.current.temperature_2m;
+            
+            let quality = '';
+            if (pm25 <= 15) { quality = '🟢 อากาศดี (Very Good)'; } 
+            else if (pm25 <= 37.5) { quality = '🟡 ปานกลาง (Moderate)'; } 
+            else if (pm25 <= 75) { quality = '🟠 เริ่มมีผลกระทบ (Unhealthy for Sensitive Groups)'; } 
+            else { quality = '🔴 มีผลกระทบต่อสุขภาพ (Unhealthy)'; }
+
+            document.getElementById('show_temp').textContent = temp;
+            document.getElementById('show_pm25').textContent = pm25;
+            document.getElementById('show_quality').textContent = quality;
+            
+            ข้อความโหลด.style.display = 'none';
+            กล่องข้อมูล.style.display = 'block';
+                                   
+        } catch (error) {
+            ข้อความโหลด.textContent = '❌ ไม่สามารถดึงข้อมูลได้ในขณะนี้ กรุณาลองใหม่ภายหลัง';
+            console.error('Error fetching data:', error);
+        }
+    } // <--- ปีกกาปิดห้องครัว (จบฟังก์ชัน fetchPM25 ตรงนี้)
+
+
+    // ==========================================
+    // ให้ผู้จัดการ (window.onload) มายืนอยู่ข้างนอก แยกกันชัดเจน
+    // ==========================================
+    window.onload = function() {
+        
+        // 1. ดึงข้อมูลทันที 1 ครั้งแรก
+        fetchPM25(); 
+        
+        // 2. ระบบรีเฟรชอัตโนมัติ ทุกๆ 5 นาที
+        setInterval(fetchPM25, 300000); 
+        
+    };
+
     </script>
 
 </html>
